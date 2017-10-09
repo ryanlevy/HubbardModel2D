@@ -35,10 +35,7 @@ void HubbardModel2D::init(){
   }
   infile.close();    
 
-  std::string vLoc="vec.dat";
-  //std::string vLoc="";
-
-  int L =BASISSIZE/2; //trust defs.h will be setup properly
+  int L =BASISSIZE/2; //trust Hubbard2D.hpp will be setup properly
   HH.resize(L,L);
   HH.setZero();
   
@@ -49,7 +46,7 @@ void HubbardModel2D::init(){
       HH(i,*n)=-t;
     }
   } 
-  //T is hermitian
+  //HH is hermitian
   for(int i=0;i<L;i++){
     for(int j=0;j<L;j++){
       assert( std::abs(HH(i,j)-HH(j,i)) < 1e-6);
@@ -107,7 +104,7 @@ void HubbardModel2D::makeBasis(){
     //std::cout << basis[0]<< std::endl;
 }
 
-/// count the electrons between start and end; offset =1 if down 0 if up
+/// count the electrons between start and end; spinOffset if down 0 if up
 int countElectrons(const lattice_t &psi,size_t start,size_t end,size_t offset){
   int count=0;
   if(start>end)
@@ -154,13 +151,13 @@ void HubbardModel2D::buildHubbard2D(){
 #pragma omp parallel for reduction(merge: tripletList)
     for(size_t basisIdx=0;basisIdx<nH;basisIdx++){
     //for(Iter it=basis.begin();it!=basis.end();it++){
-        lattice_t psi=basis[basisIdx];//*it;
+        lattice_t psi=basis[basisIdx];
         unsigned long ci = indexMap[psi];
         double diagWeight = 0.0;
         //first do the hopping matrix, which need to know about
-        //neighbors though T
+        //neighbors though HH
         for(int loc=0;loc<BASISSIZE/2;loc++){
-          // each site is (up,down)
+          // each ket it (spin up sites)(spin down sites)
           //spin up then spin down
           for(size_t offset : {0,spinOffset}){
             if(psi[loc+offset]==1){
