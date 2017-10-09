@@ -1,0 +1,24 @@
+diff --git a/include/MatOp/SparseGenMatProd.h b/include/MatOp/SparseGenMatProd.h
+index 7205497..b038ab4 100644
+--- a/include/MatOp/SparseGenMatProd.h
++++ b/include/MatOp/SparseGenMatProd.h
+@@ -30,7 +30,8 @@ private:
+     typedef Eigen::Map<Vector> MapVec;
+     typedef Eigen::SparseMatrix<Scalar, Flags, StorageIndex> SparseMatrix;
+ 
+-    const SparseMatrix& m_mat;
++    //const SparseMatrix& m_mat;
++    Eigen::Ref<const SparseMatrix> m_mat;
+ 
+ public:
+     ///
+@@ -39,7 +40,8 @@ public:
+     /// \param mat_ An **Eigen** sparse matrix object, whose type is
+     /// `Eigen::SparseMatrix<Scalar, ...>`.
+     ///
+-    SparseGenMatProd(const SparseMatrix& mat_) :
++    //SparseGenMatProd(const SparseMatrix& mat_) :
++    SparseGenMatProd(Eigen::Ref<const SparseMatrix> mat_) :
+         m_mat(mat_)
+     {}
+ 
