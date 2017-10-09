@@ -1,6 +1,5 @@
 //
 //  Hubbard2D.hpp
-//  HubbardModel
 //
 //  Created by ryle on 1/15/17.
 //  Copyright © 2017 R L. All rights reserved.
@@ -19,7 +18,7 @@
 #include <Eigen/SparseCore>
 #include <Eigen/Core>
 
-#define BASISSIZE 32 //8 //2*4
+#define BASISSIZE 32 //(4*4)*2
 typedef std::bitset<BASISSIZE> tbitset;
 typedef tbitset lattice_t;
 typedef std::vector<lattice_t> basis_t;
@@ -45,9 +44,10 @@ protected:
     dict_t indexMap;
 
     /// Hoping/Neighbor Matrix; should include -t,-t' etc
-    // TODO:allow for t' values
+    // TODO:allow for t' values that aren't 1
     Eigen::MatrixXd HH;
 
+    //stores neighbors, currently unused beyond HH generation
     std::vector<std::vector<int> > neighbors; 
     
 public:
@@ -69,6 +69,7 @@ public:
     ///getter for last made Hamiltonian
     SpMat *getH() {return &H;}
 
+    ///given a basis element return index
     unsigned long getState(const lattice_t &psi){return indexMap[psi];}
     
 };

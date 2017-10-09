@@ -6,7 +6,7 @@ A C++ version of the 2D Hubbard Model with arbitrary lattice. The Hubbard Model 
 ## Requirements
 * C++11
 * Eigen3
-* For diagnolization 
+* For diagonalization 
   * By default the code uses Lanczos using [ietl](https://github.com/garrison/ietl)
     * ietl requires Boost and LAPACK
   * For more exact eigenvalue/vector calculations there is [Spectra](https://github.com/yixuan/spectra). See the note below.

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.6)
-project(HubbardModel)
+project(HubbardModel2D)
 
 SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 set(CMAKE_CXX_STANDARD 11)

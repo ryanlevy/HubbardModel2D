@@ -1,6 +1,5 @@
 //
 //  Hubbard2D.cpp
-//  HubbardModel
 //
 //  Created by ryle on 1/15/17.
 //  Copyright © 2017 R L. All rights reserved.
@@ -67,7 +66,6 @@ void HubbardModel2D::makeBasis(){
     assert(nUp+nDown <=BASISSIZE); //sanity check
     
     //uneffecient but good enough for now
-    //TODO: change to use bitsets
     
     using config_t = unsigned long;
     
