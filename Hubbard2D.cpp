@@ -165,7 +165,7 @@ void HubbardModel2D::buildHubbard2D(){
               for(int Li=0;Li<BASISSIZE/2;Li++){
                 double hopVal = HH(loc,Li); //probably need to be more careful if complex
                 bool occupied = psi[Li+offset]==1;
-                if(abs(hopVal)>epsilon && (!occupied || Li==loc)){
+                if(std::abs(hopVal)>epsilon && (!occupied || Li==loc)){
                   if(Li==loc){
                     //assert(false); //unsure that this should ever come up in a hopping matrix
                     diagWeight+=hopVal;
