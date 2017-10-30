@@ -17,11 +17,31 @@
 
 int main(int argc, const char * argv[]) {
   int Lx=4,Ly=4; //dimensions of lattice
-  int ne=2; //# of electrons
-  int U=4;
-  HubbardModel2D H(4,4,ne,ne,1,U);
+  int ne; //# of electrons
+  double U;
+  if(argc == 1){
+    std::cerr<<"Using all defaults"<<std::endl;
+    ne=2; //# of electrons
+    U=4;
+  }
+  else if(argc >5 || (argc-1)%2){
+    std::cout<<"Wrong input format!"<<std::endl;
+    std::cout<<"-ne [#num electrons] -U [# for U/t]"<<std::endl;
+    return 1;
+  }
+  else{
+    ne=2;
+    U=4;
+    for(int i=1;i<argc;i+=2){
+     if(std::string(argv[i]) == "-ne")
+       ne = std::atoi(argv[i+1]);
+     if(std::string(argv[i]) == "-U")
+       U = std::atof(argv[i+1]);
+    }
+  }
   std::cout << "2D "<<Lx<<"x"<<Ly<<" Hubbard model with "
   << ne <<" up/down electrons and U/t="<<U<<std::endl;
+  HubbardModel2D H(4,4,ne,ne,1,U);
   H.makeBasis();
   std::cout <<"Made Basis: " << H.getBasis()->size()<< std::endl;
 

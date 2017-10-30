@@ -22,6 +22,12 @@ The default values, `Ne=4` and `U/t=4` should have a ground state of `-11.53029`
 ### Input
 There is not currently a default lattice, so a list of bonds is required. Place `bond.dat` in the same folder as the executable when running. Two examples of 4x1 (how to have the code calculate 1D) and 4x4 are included. The number of sites*2 needs to be set as the BASISSIZE in `Hubbard2D.hpp`
 
+One can programatically change the number of electrons and the `U/t` value using the following command line input:
+```
+$ ./HubbardModel2D -ne [#num electrons] -U [# for U/t]
+```
+Thefore the default numbers are `./HubbardModel2D -ne 2 -U 4`
+
 ### Spectra
 ---
 If you use spectra, this code requires a patch of spectra, (for non lanczos)
