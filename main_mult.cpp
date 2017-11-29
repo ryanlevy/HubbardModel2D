@@ -25,7 +25,7 @@ int main(int argc, const char * argv[]) {
     for(int U=1;U<=8;U++){
       //int ne=2; //# of electrons
       //int U=4;
-      HubbardModel2D H(4,4,ne,ne,1,U);
+      HubbardModel2D H(ne,ne,1,U);
       std::cout << "2D "<<Lx<<"x"<<Ly<<" Hubbard model with "
       << ne <<" up/down electrons and U/t="<<U<<std::endl;
       H.makeBasis();

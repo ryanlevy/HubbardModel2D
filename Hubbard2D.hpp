@@ -17,8 +17,9 @@
 #include <unordered_map>
 #include <Eigen/SparseCore>
 #include <Eigen/Core>
-
+//**************************************c
 #define BASISSIZE 32 //(4*4)*2
+//**************************************c
 typedef std::bitset<BASISSIZE> tbitset;
 typedef tbitset lattice_t;
 typedef std::vector<lattice_t> basis_t;
@@ -51,8 +52,8 @@ protected:
     std::vector<std::vector<int> > neighbors; 
     
 public:
-    HubbardModel2D(int Lx_in,int Ly_in,int nUp_in,int nDown_in,double t_in, double U_in):
-    Lx(Lx_in),Ly(Ly_in),nUp(nUp_in),nDown(nDown_in),t(t_in),U(U_in){
+    HubbardModel2D(int nUp_in,int nDown_in,double t_in, double U_in):
+    nUp(nUp_in),nDown(nDown_in),t(t_in),U(U_in){
       init();};
     
     //setup matrices
