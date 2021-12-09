@@ -9,7 +9,18 @@ A C++ version of the 2D Hubbard Model with arbitrary lattice. The Hubbard Model 
 * For diagonalization 
   * By default the code uses Lanczos using [ietl](https://github.com/garrison/ietl)
     * ietl requires Boost and LAPACK
-  * For more exact eigenvalue/vector calculations there is [Spectra](https://github.com/yixuan/spectra). See the note below.
+  * To find all eigenvalue/vector or increased resolution there is [Spectra](https://github.com/yixuan/spectra). See the note below.
+
+## Install
+
+Make and navigate to a build directory (`mkdir build; cd build`) and run 
+```bash
+cmake .. -DEIGEN3_INCLUDE_DIR=/path/to/eigen3 -DIETL_DIR=/path/to/ietl
+make -j 2
+```
+if using Spectra, add `-DSpectra_DIR=/path/to/spectra/include`
+
+Note that to change the lattice size, `HubbardModel2D` needs to be recompiled (see below)
 
 ## Notes
 Defaults to 4x4 lattice with 2 ↑ and 2 ↓ electrons at U/t=4. The boundary conditions are set by the bond file implicitly.  

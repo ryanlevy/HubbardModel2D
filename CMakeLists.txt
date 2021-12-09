@@ -34,9 +34,13 @@ set(SOURCE_FILES
         Hubbard2D.hpp
         )
 #find_package (Eigen3 3.3 REQUIRED)
-include_directories(${EIGEN3_INCLUDE_DIR})
-include_directories(~/software/spectra/include)
-include_directories(~/software/ietl/)
+if(NOT IETL_DIR)
+  set(IETL_DIR ~/software/ietl)
+endif()
+if(NOT Spectra_DIR)
+  set(Spectra_DIR ~/software/spectra/include)
+endif()
+include_directories(${EIGEN3_INCLUDE_DIR} ${IETL_DIR} ${Spectra_DIR})
 
 add_library(hubbard ${SOURCE_FILES})
 add_executable(HubbardModel2D main.cpp )
